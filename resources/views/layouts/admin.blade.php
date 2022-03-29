@@ -1,10 +1,11 @@
 <!doctype html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <title>Dashboard</title>
+    <title>@yield('page-title')</title>
     <style>
         #loader {
             transition: all .3s ease-in-out;
@@ -58,7 +59,10 @@
             }
         }
     </style>
-    <script defer="defer" src="main.js"></script>
+
+    {{-- <link rel="stylesheet" href="{{ mix('/css/styles.css') }}"> --}}
+
+    <script defer="defer" src="/dash/main.js"></script>
 </head>
 
 <body class="app">
@@ -309,7 +313,7 @@
                 </div>
             </div><!-- ### $App Screen Content ### -->
             <main class="main-content bgc-grey-100">
-
+                @yield('content')
             </main><!-- ### $App Screen Footer ### -->
             <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600"><span>Copyright © 2021 Designed by <a
                         href="https://colorlib.com" target="_blank" title="Colorlib">Colorlib</a>. All rights

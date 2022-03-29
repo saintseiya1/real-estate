@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 
-// Single listing 
+// Single listing
 Route::get('/listing/{slug}/{id}', function () {
     return view('pages/single-listing');
 });
@@ -35,6 +35,10 @@ Route::get('/account', function () {
 // User Showing Status
 Route::get('/account/show-status', function () {
     return view('pages/show-status');
+})->name('show-status');
+
+Route::get('/admin', function () {
+    return view('admin/dashboard');
 })->name('show-status');
 
 // Route::get('/dashboard', function () {
