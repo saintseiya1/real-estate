@@ -8,7 +8,7 @@
 <div class="listings-properties">
     <div class="row">
         <div class="col-sm-12 col-lg-4 col-xl-4">
-            <div class="listings-properties__item">            
+            <div class="listings-properties__item">
                 <img src="/img/h1.jpg">
                 <div class="listings-properties__saved">
                     <i class="fa-solid fa-heart"></i>
