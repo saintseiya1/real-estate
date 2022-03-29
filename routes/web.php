@@ -13,6 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin/'
+], function() {
+
+    Route::get('/', function () {
+        return view('admin/dashboard');
+    })->name('dashboard');
+
+    Route::group([
+        'prefix' => 'listings',
+        'as' => 'listings/'
+    ], function() {
+        Route::get('/', [\App\Http\Controllers\Admin\ListingController::class, 'index'])
+        ->name('index');
+
+        Route::get('/create', [\App\Http\Controllers\Admin\ListingController::class, 'create'])
+        ->name('create');
+
+        Route::get('/{id}/edit', [\App\Http\Controllers\Admin\ListingController::class, 'edit'])
+        ->name('edit');
+    });
+});
+
 Route::get('/', function () {
     return view('pages/home');
 });
@@ -39,13 +63,6 @@ Route::get('/account/show-status', function () {
 
 
 
-Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin/'
-], function() {
-    Route::get('/', function () {
-        return view('admin/dashboard');
-    })->name('dashboard');
-});
+
 
 require __DIR__.'/auth.php';

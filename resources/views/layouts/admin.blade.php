@@ -105,8 +105,8 @@
                                 class="title">Property Listings</span> <span class="arrow"><i
                                     class="ti-angle-right"></i></span></a>
                         <ul class="dropdown-menu">
-                            <li><a class="sidebar-link" href="basic-table.html">Create New Listing</a></li>
-                            <li><a class="sidebar-link" href="datatable.html">Show All Listings</a></li>
+                            <li><a class="sidebar-link" href="{{ route('admin/listings/create') }}">Create New Listing</a></li>
+                            <li><a class="sidebar-link" href="{{ route('admin/listings/index') }}">Show All Listings</a></li>
                             <li><a class="sidebar-link" href="datatable.html">Listing Tour Requests</a></li>
                         </ul>
                     </li>
