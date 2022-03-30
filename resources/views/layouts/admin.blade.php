@@ -72,7 +72,7 @@
     <script>window.addEventListener("load", (function () { const t = document.getElementById("loader"); setTimeout((function () { t.classList.add("fadeOut") }), 300) }))</script>
     <div>
         <!-- #Left Sidebar ==================== -->
-        <div class="sidebar">
+        <div class="sidebar" style="background: #0b0b13;">
             <div class="sidebar-inner">
                 <!-- ### $Sidebar Header ### -->
                 <div class="sidebar-logo">
@@ -83,7 +83,7 @@
                                         <div class="logo"><img src="assets/static/images/logo.png" alt=""></div>
                                     </div>
                                     <div class="peer peer-greed">
-                                        <h5 class="lh-1 mB-0 logo-text">Adminator</h5>
+                                        <h5 class="lh-1 mB-0 logo-text" style="color: red;">Bryant Realty</h5>
                                     </div>
                                 </div>
                             </a></div>
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 </div><!-- ### $Sidebar Menu ### -->
-                <ul class="sidebar-menu scrollable pos-r">
+                <ul class="sidebar-menu scrollable pos-r" style="color: white;">
 
                     <li class="nav-item mT-30 actived"><a class="sidebar-link" href="{{ route('admin/dashboard') }}"><span
                                 class="icon-holder"><i class="c-blue-500 ti-home"></i> </span><span
