@@ -40,6 +40,9 @@ Route::group([
 
         Route::put('/{slug}/{id}', [\App\Http\Controllers\Admin\ListingController::class, 'update'])
         ->name('update');
+
+        Route::get('/{slug}/{id}/delete', [\App\Http\Controllers\Admin\ListingController::class, 'destroy'])
+        ->name('delete');
     });
 });
 

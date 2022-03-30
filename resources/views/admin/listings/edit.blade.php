@@ -10,6 +10,7 @@
             <div class="mT-30">
                 <form method="POST" action="{{ route('admin/listings/update', ['slug' => $listing->slug, 'id' => $listing->id]) }}">
                     @csrf
+                    @method('PUT')
                     <div class="mb-3"><label class="form-label" for="address">Address</label> <input type="text"
                             class="form-control" name="address" id="address" placeholder="EX: 1234 Main St"
                             value="{{ old('address', $listing->address) }}">
@@ -44,8 +45,8 @@
 
                         <div class="mb-3 col-md-4"><label class="form-label" for="state">State</label> <select
                                 name="state" id="state" class="form-control">
-                                <option value="FL" @selected(old('state', $listing->state) == 'FL' )>Florida</option>
-                                <option value="NY" @selected(old('state', $listing->state) == 'NY' )>New York</option>
+                                <option value="FL" @selected(old('state') == 'FL' ) == 'FL' )>Florida</option>
+                                <option value="NY" @selected(old('state') == 'NY' )>New York</option>
                             </select>
                             @error('state')
                                 <div class="error-sub-text">
@@ -106,7 +107,10 @@
 
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-color">Create Listing</button>
+                    <button type="submit" class="btn btn-primary btn-color">Save</button>
+                    <a href="{{ route('admin/listings/delete', ['slug' => $listing->slug, 'id' => $listing->id])}}"
+                        onclick="return confirm('Are you sure you want to delete this listing?')"
+                        class="btn btn-danger btn-color">Delete Listing</a>
                 </form>
             </div>
         </div>

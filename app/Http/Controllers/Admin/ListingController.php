@@ -44,7 +44,7 @@ class ListingController extends Controller
             'zipcode' => 'required|integer',
             'bedrooms' => 'required|integer',
             'bathrooms' => 'required|integer',
-            'squarefootage' => 'required|integer',
+            'squarefootage' => 'required',
 
         ]);
 
@@ -90,8 +90,8 @@ class ListingController extends Controller
             'slug' => $slug
             ])->first();
 
-            // return $listing;
         return view('admin/listings/edit', ['listing' => $listing]);
+
     }
 
     /**
@@ -101,9 +101,38 @@ class ListingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug, $id)
     {
-        return 'test';
+        request()->validate([
+            'address' => 'required',
+            'address2' => 'required',
+            'city' => 'required',
+            'zipcode' => 'required|integer',
+            'bedrooms' => 'required|integer',
+            'bathrooms' => 'required|integer',
+            'squarefootage' => 'required'
+        ]);
+
+        $listing = Listing::where([
+            'id' => $id,
+            'slug' => $slug
+            ])->first();
+
+        $listing->address = $request->get('address');
+        $listing->address2 = $request->get('address2');
+        $listing->city = $request->get('city');
+        $listing->state = $request->get('state');
+        $listing->zipcode = $request->get('zipcode');
+        $listing->bedrooms = $request->get('bedrooms');
+        $listing->bathrooms = $request->get('bathrooms');
+        $listing->squarefootage = $request->get('squarefootage');
+
+        $listing->slug = Helper::slugify("{$request->address}-{$request->address2}-{$request->city}-{$request->state}-{$request->zipcode}");
+
+        $listing->save();
+
+        return redirect("/admin/listings/{$listing->slug}/{$listing->id}/edit")->with('success', 'Listing Updated Successfully');
+
     }
 
     /**
@@ -112,8 +141,12 @@ class ListingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug, $id)
     {
-        //
+        $listing = Listing::find($id);
+        $listing->delete();
+
+        return redirect("/admin/listings")->with('success', 'Listing Has Been Deleted');
+
     }
 }
