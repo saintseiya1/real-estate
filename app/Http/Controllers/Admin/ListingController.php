@@ -83,9 +83,15 @@ class ListingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug, $id)
     {
-        return view('admin/listings/edit');
+        $listing = Listing::where([
+            'id' => $id,
+            'slug' => $slug
+            ])->first();
+
+            // return $listing;
+        return view('admin/listings/edit', ['listing' => $listing]);
     }
 
     /**
@@ -97,7 +103,7 @@ class ListingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return 'test';
     }
 
     /**
