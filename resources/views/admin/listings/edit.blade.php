@@ -107,13 +107,11 @@
                         </div>
 
                         <div class="row">
-                            <div class="mb-3 col-md-6">
+                            <div class="mb-3 col-md-12">
                                 <h3>Details</h3>
                                 <label class="form-label" for="description">Description</label>
                                 <textarea class="form-control" name="description" id="description"
-                                    placeholder="EX: talk about property">
-                                    {{ old('description', $listing->description) }}
-                                </textarea>
+                                    placeholder="EX: talk about property">{{ old('description', $listing->description) }}</textarea>
                             </div>
                             @error('description')
                                 <div class="error-sub-text">
