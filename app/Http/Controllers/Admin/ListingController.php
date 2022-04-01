@@ -93,7 +93,6 @@ class ListingController extends Controller
      */
     public function edit($slug, $id)
     {
-
         $listing = Listing::where([
             'id' => $id,
             'slug' => $slug
@@ -161,6 +160,5 @@ class ListingController extends Controller
         $listing->delete();
 
         return redirect("/admin/listings")->with('success', 'Listing Has Been Deleted');
-
     }
 }

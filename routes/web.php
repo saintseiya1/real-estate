@@ -56,14 +56,11 @@ Route::group([
         Route::post('/{slug}/{id}/photos', [\App\Http\Controllers\Admin\PhotoController::class, 'store'])
         ->name('photos/store');
 
-        Route::get('/{slug}/{id}/photos/{photo_id}/edit', [\App\Http\Controllers\Admin\PhotoController::class, 'edit'])
-        ->name('photos/edit');
-
-        Route::put('/{slug}/{id}/photos', [\App\Http\Controllers\Admin\PhotoController::class, 'update'])
-        ->name('photos/update');
-
-        Route::get('/{slug}/{id}/photos/{photo_id}/delete', [\App\Http\Controllers\Admin\PhotoController::class, 'delete'])
+        Route::get('/{slug}/{id}/photos/{photo_id}/delete', [\App\Http\Controllers\Admin\PhotoController::class, 'destroy'])
         ->name('photos/delete');
+
+        Route::get('/{slug}/{id}/photos/{photo_id}/featured', [\App\Http\Controllers\Admin\PhotoController::class, 'featured'])
+        ->name('photos/featured');
 
     });
 });
@@ -91,9 +88,6 @@ Route::get('/account', function () {
 Route::get('/account/show-status', function () {
     return view('pages/show-status');
 })->name('show-status');
-
-
-
 
 
 require __DIR__.'/auth.php';

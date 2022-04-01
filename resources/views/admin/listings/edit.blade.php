@@ -130,8 +130,8 @@
                             <label class="form-label" for="status">Status</label>
                             <select
                                 name="status" id="status" class="form-control">
-                                <option value="draft" @selected(old('status', $listing->status) == 'draft')>Draft</option>
-                                <option value="published" @selected(old('status', $listing->status) == 'published')>Published</option>
+                                <option value="draft" @selected(old('status') == 'draft') ==  'draft'>Draft</option>
+                                <option value="published" @selected(old('status') == 'published') == 'published'>Published</option>
                             </select>
                             @error('status')
                                 <div class="error-sub-text">
@@ -142,9 +142,9 @@
 
                         <div class="form-group" style="display:flex; margin-top: 1rem; flex-direction: column;">
 
-                            <a href="{{ route('admin/listings/delete', ['slug' => $listing->slug, 'id' => $listing->id])}}"
-                                onclick="return confirm('Are you sure you want to delete this listing?')"
-                                class="btn cur-p btn-outline-success" style="margin-top: 1rem; width:100%; color: black;">Gallery</a>
+                            <a href="{{ route('admin/listings/photos', ['slug' => $listing->slug, 'id' => $listing->id])}}"
+                                onclick="return confirm('Did you save your updates?')"
+                                class="btn cur-p btn-outline-success" style="margin-top: 1rem; width:100%; color: black;">Photos</a>
                         </div>
 
                         <div class="form-group" style="display:flex; margin-top: 1rem; flex-direction: column;">

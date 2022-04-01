@@ -144,7 +144,7 @@
 
                             <a href="{{ route('admin/listings/delete', ['slug' => $listing->slug, 'id' => $listing->id])}}"
                                 onclick="return confirm('Are you sure you want to delete this listing?')"
-                                class="btn cur-p btn-outline-success" style="margin-top: 1rem; width:100%; color: black;">Gallery</a>
+                                class="btn cur-p btn-outline-success" style="margin-top: 1rem; width:100%; color: black;">Photos</a>
                         </div>
 
                         <div class="form-group" style="display:flex; margin-top: 1rem; flex-direction: column;">
