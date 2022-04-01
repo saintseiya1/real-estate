@@ -18,19 +18,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($listings as $listing)
+                        @foreach($photos as $photo)
                         <tr>
-                            <th scope="row">{{ $listing->id }}</th>
-                            <td><a href="{{ route('admin/listings/edit', [
-                                'slug' => $listing->slug,
-                                'id' => $listing->id
-                                ]) }}">
-                                    {{ $listing->address }} {{ $listing->address2}}<br>
-                                    {{ $listing->city}}, {{ $listing->state}} {{ $listing->zipcode}}
-                                </a>
+                            <th scope="row">{{ $photo->id }}</th>
+                            <td>
+                                <img src="/img/{{ $photo->name }}" style="width: 300px;">
                             </td>
                             <td>
-                                @if ($listing->status == 'published')
+                                {{ $photo->name }}
+                                {{-- @if ($listing->status == 'published')
                                     <div class="btn cur-p btn-success"
                                         style="width: 100px; text-transform: capitalize; font-size: 0.9rem">
                                         {{ $listing->status }}
@@ -41,13 +37,13 @@
 
                                         {{ $listing->status }}
                                     </div>
-                                @endif
+                                @endif --}}
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{ $listings->links() }}
+                {{ $photos->links() }}
             </div>
         </div>
     </div>

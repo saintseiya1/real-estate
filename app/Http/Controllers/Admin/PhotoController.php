@@ -24,11 +24,11 @@ class PhotoController extends Controller
             'listing_id' => $id
         ])->paginate(5);
 
-        if(!$photos->hasPages()) {
+        if($photos->total() < 1) {
             return redirect("/admin/listings/{$slug}/{$id}/photos/create");
         }
         return view('admin/listings/photos/index', [
-            'listings' => $photos
+            'photos' => $photos
         ]);
     }
 
@@ -37,9 +37,12 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($slug, $id)
     {
-        return view('admin/listings/photos/create');
+        return view('admin/listings/photos/create', [
+            'slug' => $slug,
+            'id' => $id
+        ]);
     }
 
     /**
@@ -48,9 +51,33 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $slug, $id)
     {
-        //
+        // $this->authorize('create', Listing::class);
+
+        request()->validate([
+            'image' => 'required'
+            // 'image' => 'required|mimetypes:jpeg,bmp,png'
+            // 'image' => 'required|mimes:jpg,bmp,png',
+        ]);
+
+        $newName = time() . '-' . $request->file('image')->getClientOriginalName();
+        $size = $request->file('image')->getSize();
+        $name = $newName;
+        $request->file('image')->move(public_path('img'), $name);
+
+        $photo = new Photo();
+        $photo->name = $name;
+        $photo->size = $size;
+        $photo->user_id = auth()->user()->id;
+        $photo->listing_id = $id;
+
+        // $listing->slug = Helper::slugify("{$request->address}-{$request->address2}-{$request->city}-{$request->state}-{$request->zipcode}");
+
+        $photo->save();
+
+        return redirect("/admin/listings/{$slug}/{$id}/photos")->with('success', 'Created New Listing Successfully');
+
     }
 
     /**

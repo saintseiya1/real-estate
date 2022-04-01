@@ -102,7 +102,6 @@ class ListingController extends Controller
         $this->authorize('update', $listing);
 
         return view('admin/listings/edit', ['listing' => $listing]);
-
     }
 
     /**
